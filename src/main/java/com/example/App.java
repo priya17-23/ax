@@ -2,7 +2,7 @@ package com.example;
 
 /**
  * Hello world!
- *
+ * clean install exec:java -Dexec.mainClass=com.example.App
  */
 public class App 
 {
