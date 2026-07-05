@@ -3,15 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build') {
             steps {
-                bat 'clean install exec:java -Dexec.mainClass=com.example.App'
+                bat 'mvn clean install exec:java -Dexec.mainClass=com.example.App'
             }
         }
 
@@ -25,16 +19,6 @@ pipeline {
             steps {
                 bat 'mvn package'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build Successful'
-        }
-
-        failure {
-            echo 'Build Failed'
         }
     }
 }
