@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean install exec:java -Dexec.mainClass=com.example.App'
+                bat 'mvn clean install exec:java -Dexec.mainClass=com.example.c'
             }
         }
 
