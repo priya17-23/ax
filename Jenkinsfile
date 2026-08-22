@@ -1,25 +1,40 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+
+        stage('Checkout') {
             steps {
-                bat 'mvn clean install'
+                checkout scm
             }
         }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+
         stage('Test') {
             steps {
                 bat 'mvn test'
             }
         }
+
         stage('Package') {
             steps {
                 bat 'mvn package'
             }
         }
-        stage('Run') {
-            steps {
-                bat 'mvn exec:java -Dexec.mainClass=com.example.App'
-            }
+    }
+
+    post {
+        success {
+            echo 'Build Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
         }
     }
 }
